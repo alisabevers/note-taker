@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const db = require('./Develop/db/db.json');
+const fs = require('fs');
 const PORT = 3001;
 
 app.use(express.json());
@@ -25,6 +26,20 @@ app.post('/api/notes', (req, res) => {
       text,
     };
 
+  fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
+    if(err) {
+      console.log(err);
+    } else {
+      const dataFromFile = JSON.parse(data);
+      dataFromFile.push(newNote);
+      const stringifiedData = JSON.stringify(dataFromFile);
+        fs.writeFile(`./Develop/db/db.json`, stringifiedData, (err) => err
+        ? console.log(error(err))
+        : console.log(`New note called ${newNote.title} has been written to the db.json file.`)
+        );
+    }
+  })
+
     const response = {
       status: "A new note was successfully saved!",
       body: newNote,
@@ -32,6 +47,7 @@ app.post('/api/notes', (req, res) => {
 
     console.log(response);
     res.status(201).json(response);
+
   } else {
     res.status(500).json('Error in posting your note');
   }
