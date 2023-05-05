@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
   res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
+
 }); 
 
 app.post('/api/notes', (req, res) => {
@@ -35,13 +36,13 @@ app.post('/api/notes', (req, res) => {
       const stringifiedData = JSON.stringify(dataFromFile);
         fs.writeFile(`./Develop/db/db.json`, stringifiedData, (err) => err
         ? console.log(error(err))
-        : console.log(`New note called ${newNote.title} has been written to the db.json file.`)
+        : console.log(`A new note called, "${newNote.title}" was written to the db.json file.`)
         );
     }
   })
 
     const response = {
-      status: "A new note was successfully saved!",
+      status: "success",
       body: newNote,
     };
 
