@@ -15,11 +15,27 @@ app.get('/', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
   res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
-}); //need to get the styling to connect on this page
+}); 
 
-// app.post('/api/notes', (req, res) => {
-//   console.info(`${req.method} request received to add a review`);
-// });
+app.post('/api/notes', (req, res) => {
+  const { title, text } = req.body;
+  if (title && text ) {
+    const newNote = {
+      title,
+      text,
+    };
+
+    const response = {
+      status: "A new note was successfully saved!",
+      body: newNote,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json('Error in posting your note');
+  }
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
