@@ -30,10 +30,8 @@ const getNotes = () =>
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    }
-  })
-    .then((res) => res.json())
-    .then((data) => data);
+    },
+  });
 
 const saveNote = (note) =>
   fetch('/api/notes', {
