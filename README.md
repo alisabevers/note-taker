@@ -5,7 +5,7 @@ This assignemnt was provided to me by the Georgia Tech Coding Bootcamp program. 
 
 The application is a note-taker app which allows the user to add a title and body to a note, click the save button, and it will populate on the left-hand sidebar. 
 
-Click on this [link]() to see the deployed app.
+Click on this [link](https://note-taker-hwk.herokuapp.com/) to see the deployed app.
 
 ## Installation
 The user will require the ```express``` library. To install this library, run ```npm i express``` in your terminal: 
